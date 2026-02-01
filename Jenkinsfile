@@ -1,10 +1,5 @@
 pipeline {
-	agent {
-		docker {
-			image 'younes015/maven-jenkins-agent:v1'
-			args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
-		}
-	}
+	agent any
 
 	stages {
 		stage('clean workspace') {
