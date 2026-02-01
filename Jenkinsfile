@@ -15,7 +15,7 @@ pipeline {
 		}
 		stage('checkout') {
 			steps {
-				git branch : 'main', credentialsId : 'github_id', url : 'TODO'
+				git branch : 'main', credentialsId : 'github_id', url : 'https://github.com/younes200444/cicdTest.git'
 			}
 		}
 		stage('build') {
