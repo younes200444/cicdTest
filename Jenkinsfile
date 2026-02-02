@@ -69,8 +69,5 @@ pipeline {
 				}
 			}
 		}
-		stage('scanImage') {
-			sh 'docker run -v '
-		}
 	}
 }
