@@ -57,12 +57,20 @@ pipeline {
 						docker_image = docker.build "${IMAGE_NAME}"
 					}
 
+					echo "🛡️ Démarrage du scan de sécurité Trivy..."
+					sh "curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b ."
+					sh "./trivy image --exit-code 1 --severity CRITICAL --no-progress --ignorefile .trivyignore ${IMAGE_NAME}"
+					echo "✅ Scan terminé : Aucune faille critique détectée."
+
 					docker.withRegistry('', DOCKER_PASS) {
 						docker_image.push("${IMAGE_TAG}")
 						docker_image.push("latest")
 					}
 				}
 			}
+		}
+		stage('scanImage') {
+			sh 'docker run -v '
 		}
 	}
 }
